@@ -1,11 +1,25 @@
 <script>
-// @ts-nocheck
+  // @ts-nocheck
+  import { onMount, onDestroy } from 'svelte';
+import { fade, scale} from 'svelte/transition';
+  import FeedbackItem from "./FeedbackItem.svelte";
+ import { FeedbackStore } from '../stores';
 
-import FeedbackItem from "./FeedbackItem.svelte";
-export let feedback
+//   let feedback 
+//  const unSubscribe = FeedbackStore.subscribe((value)=>{
+//     feedback = value
+//  })
+//  onMount(()=>{
+//    console.log('mounted')
+//  })
+//  onDestroy(()=>{
+//   unSubscribe()
+//  })
 
 </script>
 
-{#each feedback as feed (feed.id)}
-   <FeedbackItem item={feed} on:delete-feedback />
+{#each $FeedbackStore as feed (feed.id)}
+  <div in:scale out:fade='{{duration : 500}}'>
+    <FeedbackItem item={feed} />
+  </div>
 {/each}
