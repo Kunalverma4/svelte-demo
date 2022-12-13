@@ -4,6 +4,7 @@
   import Card from "./Card.svelte";
   import Button from "./Button.svelte";
   import { createEventDispatcher } from "svelte";
+  import { FeedbackStore } from "../stores";
   let text = "";
   let rating = 10;
   let btnDisabled = true;
@@ -31,10 +32,12 @@
         text,
         rating: +rating,
       };
-      dispatch("submit-feedback", newFeedback);
+
+      $FeedbackStore = [newFeedback,...$FeedbackStore]
+    };
       text = "";
     }
-  };
+ 
 </script>
 
 <Card>

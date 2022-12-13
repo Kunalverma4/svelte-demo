@@ -19,7 +19,7 @@ import { fade, scale} from 'svelte/transition';
 </script>
 
 {#each $FeedbackStore as feed (feed.id)}
-  <div in:scale out:fade='{{duration : 500}}'>
+  <div transition:scale>
     <FeedbackItem item={feed} />
   </div>
 {/each}
